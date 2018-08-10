@@ -1,0 +1,185 @@
+@charset "utf-8";
+
+body
+{ 
+	margin: 0px;
+	padding: 0px; 
+}
+
+#faixa_top 
+{
+	width: 100%;
+	height: 64px;
+	float: left;
+	text-align: center;
+	background-color: #3E3E3E;
+}
+
+#logo
+{
+    width: auto;
+	height: auto;
+	float: left; 
+}
+
+#menu
+{
+	width: 80%;
+	height: auto;
+	float: left;
+	vertical-align: middle;
+}
+
+.btmenu
+{
+    list-style: none;
+    padding: 0px;
+    float: left;
+    margin: 0px;
+    font-family: Verdana, sans-serif;
+}
+
+.btmenu li
+{
+    position: relative;
+    float: left;
+    text-align: center;
+    color: white;
+}
+
+.btmenu li a
+{
+    width: 164px;
+    height: 64px;
+    font-size: 26px;
+    text-decoration: none;
+    text-align: center;
+    margin: 0px;
+    line-height: 64px;
+    float: left;
+    /*box-shadow: 0px 6px 10px 0px #CCC;*/
+}
+
+.btmenu li a:hover
+{
+    color: white;
+    background-color:#CD0B0B;
+}
+
+.btmenu li a.ativo
+{
+   color: goldenrod;
+}
+
+/*.media_left
+{
+	width: 50%;
+	height: 288px;
+	float: left;
+	margin: 16px 0px 16px 0px;
+}
+
+.media_right
+{
+	width: 50%;
+	height: 288px;
+	float: left;
+	margin: 16px 0px 16px 0px;
+}
+
+
+.block_main
+{
+	width: 512px;
+	height: 288px;
+	float: left;
+}
+
+.block_med
+{
+    width: auto;
+	height: 128px;
+	float: left;
+	position: relative;
+}
+
+.resumo
+{
+	width: 219.5px;
+	background-color: rgba(39,39,39,0.63);
+	text-align: justify;
+	float: left;
+	color: white;
+	position: absolute;
+	bottom: 4.2px;
+	padding: 4px;
+}
+
+.resumo2
+{
+	width: 524px;
+	background-color: rgba(39,39,39,0.63);
+	text-align: justify;
+	float: left;
+	color: white;
+	position: absolute;
+	bottom: 4px;
+	padding: 4px;
+}
+
+.img_container
+{
+	display: inline-block;
+	position: relative;
+} */
+
+#recentes
+{
+    color: white;
+    background-color: #CD0B0B;
+    width: 8em;
+    font-size: 24px;
+    border-radius: 0 16px 0 0;
+    padding: 2px 2px 0px 8px;
+}
+
+.linha
+{
+	width: 100%;
+	float: left;
+	height: 6px;
+	background-color: #CD0B0B;
+}
+
+.faixa_banner
+{
+	width: 100%;
+	float: left;
+}
+
+#ad1
+{
+	width: 300px;
+	height: 250px;
+	float: left;
+    background-color: lightblue;
+}
+
+.recente
+{
+    width: auto;
+    height:auto;
+    float: left;
+    line-height: 1em;
+    border: 1px solid #dee2e6;
+    text-align: justify;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+#faixa_bottom
+{
+    width: 100%;
+    background-color: grey;
+    float:left;
+}
