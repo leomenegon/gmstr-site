@@ -216,6 +216,41 @@ body
 		color: white;
 }
 
+.navbar-dark a
+{
+	color: white;
+	font-size: 1.5rem !important;
+	font-weight: bold;
+	text-shadow: 2px 2px 1px black;
+}
+
+.navbar-dark a:hover
+{
+	background-color: #bc484e;
+}
+
+.contato
+{
+	color: white;
+	background-color: #bc484e;
+	border-radius: 12px;
+}
+
+.sidectt
+{
+	color: white;
+	background-color: rgba(0,144,35,1.00);
+	border-radius: 12px;
+}
+.btctt
+{
+	color: white; height: 2em; background-color: dimgrey; border-radius: 8px; border: 0px; font-size: 1.8rem;
+}
+
+.btctt:hover
+{
+	background-color: rgba(140,140,140,1.00);
+}
 @media (min-width: 768px) 
 {
         .txtrec
@@ -228,6 +263,7 @@ body
         max-width: 30%;
 	}
 }
+
 
 @media (min-width: 1200px)
 {
@@ -4198,7 +4234,6 @@ input[type="button"].btn-block {
   align-items: center;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
 }
 
 .navbar > .container,
@@ -4215,8 +4250,8 @@ input[type="button"].btn-block {
 
 .navbar-brand {
   display: inline-block;
-  padding-top: 0.3125rem;
-  padding-bottom: 0.3125rem;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
   margin-right: 1rem;
   font-size: 1.25rem;
   line-height: inherit;

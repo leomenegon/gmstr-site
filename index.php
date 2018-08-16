@@ -1,3 +1,20 @@
+<?php
+require_once("conexao/conecta.php");
+$sqlside = "SELECT jogo.id, jogo.titulo, jogo.descricao FROM jogo ORDER BY RAND() LIMIT 3";
+$queryside = mysqli_query($conexao,$sqlside);
+$dataside = array();
+$i=0;
+while($rowside = mysqli_fetch_assoc($queryside))
+{
+    $dataside[] = $rowside;
+	if(strlen($dataside[$i]['descricao'])>=70)
+	{
+		$x=substr($dataside[$i]['descricao'],0,70) . "...";
+		$dataside[$i]['descricao'] = $x;
+	}
+	$i++;
+}
+?>
 <!doctype html>
 <html>
 <head>
@@ -36,20 +53,21 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#">HOME <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Games</a>
+        <a class="nav-link" href="#">NOTÍCIAS</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Galeria</a>
+        <a class="nav-link" href="#">GAMES</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Sobre</a>
+        <a class="nav-link" href="#">SOBRE</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="noticia.php">Teste</a>
+	  <li class="nav-item">
+        <a class="nav-link" href="#">CONTATO</a>
       </li>
+
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -175,11 +193,29 @@
 			<li><input type="submit"></li>
         </ul>
 	</aside>
-	<aside class="col-4 float-right mt-3 ml-3 gameright">
-        <ul style="list-style: none;padding-left: 0px;">
-            <div class="float-left linha1 clicavel mt-1"><li><img src="images/placeholder2.png" alt="placeholder" width="120px" class="media m-1 mr-2 float-left"><div class="p-2"><h5>Título</h5>Mussum Ipsum, cacilds vidis litro abertis. Praesent vel viverra nisi.</div></li></div>
-            <div class="float-left linha1 clicavel"><li><img src="images/placeholder2.png" alt="placeholder" width="120px" class="media m-1 mr-2 float-left"><div class="p-2"><h5>Título</h5>Mussum Ipsum, cacilds vidis litro abertis. Praesent vel viverra nisi. </div></li></div>
-            <div class="float-left linha1 clicavel mb-1 border-bottom-0"><li style="style=border-bottom: 0px"><img src="images/placeholder2.png" alt="placeholder" width="120px" class="media m-1 float-left mr-2"><div class="p-2"><h5>Título</h5>Mussum Ipsum, cacilds vidis litro abertis. Praesent vel viverra nisi.</div></li></div>
+	<aside class="col-4 float-right mt-3 ml-3 gameright p-0">
+        <ul  style="list-style: none;padding-left: 0px;">
+            <a href="jogo.php?jogo=<?php echo $dataside[0]['id'] ?>"><div class="float-left linha1 clicavel w-100">
+				<li class="text-left">
+					<img src="images/placeholder2.png" alt="placeholder" width="120px" class="media m-1 mr-2 float-left">
+						<p class="mt-2"><b><?php echo $dataside[0]['titulo'] ?></b></p>
+						<?php echo $dataside[0]['descricao'] ?>
+				</li>
+			</div></a>
+            <a href="jogo.php?jogo=<?php echo $dataside[1]['id'] ?>"><div class="float-left linha1 clicavel w-100">
+				<li class="text-left">
+					<img src="images/placeholder2.png" alt="placeholder" width="120px" class="media m-1 mr-2 float-left">
+						<p class="mt-2"><b><?php echo $dataside[1]['titulo'] ?></b></p>
+						<?php echo $dataside[1]['descricao'] ?>
+				</li>
+			</div></a>
+            <a href="jogo.php?jogo=<?php echo $dataside[2]['id'] ?>"><div class="float-left linha1 clicavel border-bottom-0 w-100">
+				<li style="border-bottom: 0px" class="text-left">
+					<img src="images/placeholder2.png" alt="placeholder" width="120px" class="media m-1 float-left mr-2">
+						<p class="mt-2"><b><?php echo $dataside[2]['titulo'] ?></b></p>
+						<?php echo $dataside[2]['descricao'] ?>
+				</li>
+			</div></a>
         </ul>
 	</aside>
         </div>
