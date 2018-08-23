@@ -6,6 +6,10 @@ $sql = "SELECT noticia.id, noticia.titulo, noticia.subtitulo, noticia.corpo, usu
 $query = mysqli_query($conexao,$sql);
 $row = mysqli_fetch_assoc($query);
 
+$sqltag = "SELECT tag.nome as 'tag' FROM noticia JOIN tag_noticia JOIN tag ON noticia.id = tag_noticia.id_noticia AND tag.id = tag_noticia.id_tag WHERE noticia.id = $noticia";
+$querytag = mysqli_query($conexao,$sqltag);
+$rowtag = mysqli_fetch_assoc($querytag);
+
 if ($row == null)
 {
 	$row['titulo'] = "Notícia não encontrada!";
@@ -62,7 +66,7 @@ while($rowside = mysqli_fetch_assoc($queryside))
         <a class="nav-link" href="#">SOBRE</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">CONTATO</a>
+        <a class="nav-link" href="contato.php">CONTATO</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -86,7 +90,24 @@ while($rowside = mysqli_fetch_assoc($queryside))
 					</figure>
 					<p><?php echo $row['corpo'] ?></p>
 				</article>
-				<footer id="rodapenot"><p>Autor: <?php echo $row['autor'] ?></p></footer>
+				<footer id="rodapenot"><p>Autor: <?php echo $row['autor'] ?></p>
+				<p>
+					Tags: 
+					<?php 
+					$y=0; 
+					do
+					{ 
+						if($y>0)
+						{ 
+							echo ", " . $rowtag['tag']; 
+						}
+						else echo $rowtag['tag'];
+						$y++;
+					}
+					while($rowtag = mysqli_fetch_assoc($querytag)); 
+					?>
+					</p>
+			</footer>
 			</main>
 		</section> 
 		
@@ -107,21 +128,21 @@ while($rowside = mysqli_fetch_assoc($queryside))
         <ul  style="list-style: none;padding-left: 0px;">
             <a href="jogo.php?jogo=<?php echo $dataside[0]['id'] ?>"><div class="float-left linha1 clicavel w-100">
 				<li class="text-left">
-					<img src="images/placeholder2.png" alt="placeholder" width="120px" class="media m-1 mr-2 float-left">
+					<img src="images/jogo/jogo_<?php echo $dataside[0]['id'] ?>.jpg" alt="imagem" width="120px" class="media m-1 float-left mr-2">
 						<p class="mt-2"><b><?php echo $dataside[0]['titulo'] ?></b></p>
 						<?php echo $dataside[0]['descricao'] ?>
 				</li>
 			</div></a>
             <a href="jogo.php?jogo=<?php echo $dataside[1]['id'] ?>"><div class="float-left linha1 clicavel w-100">
 				<li class="text-left">
-					<img src="images/placeholder2.png" alt="placeholder" width="120px" class="media m-1 mr-2 float-left">
+					<img src="images/jogo/jogo_<?php echo $dataside[1]['id'] ?>.jpg" alt="imagem" width="120px" class="media m-1 float-left mr-2">
 						<p class="mt-2"><b><?php echo $dataside[1]['titulo'] ?></b></p>
 						<?php echo $dataside[1]['descricao'] ?>
 				</li>
 			</div></a>
             <a href="jogo.php?jogo=<?php echo $dataside[2]['id'] ?>"><div class="float-left linha1 clicavel border-bottom-0 w-100">
 				<li style="border-bottom: 0px" class="text-left">
-					<img src="images/placeholder2.png" alt="placeholder" width="120px" class="media m-1 float-left mr-2">
+					<img src="images/jogo/jogo_<?php echo $dataside[2]['id'] ?>.jpg" alt="imagem" width="120px" class="media m-1 float-left mr-2">
 						<p class="mt-2"><b><?php echo $dataside[2]['titulo'] ?></b></p>
 						<?php echo $dataside[2]['descricao'] ?>
 				</li>

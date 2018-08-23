@@ -129,6 +129,29 @@ body
 	list-style: none;
 }
 
+.pagina
+{
+	border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+	text-decoration: none;
+	width: 2em;
+	color: black;
+	font-size: 1.5rem;
+}
+
+.pagina:hover
+{
+	background-color: #bc484e;
+	text-decoration: none;
+	color: white;
+}
+
+.ativo
+{
+	background-color: #bc484e !important;
+	color: white !important;
+}
+
 .btmenu li
 {
 	font-size: 1.7em;
@@ -251,6 +274,8 @@ body
 {
 	background-color: rgba(140,140,140,1.00);
 }
+
+
 @media (min-width: 768px) 
 {
         .txtrec
@@ -3005,16 +3030,16 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-success {
-  color: #28a745;
+  color: #bc484e;
   background-color: transparent;
   background-image: none;
-  border-color: #28a745;
+  border-color: #bc484e;
 }
 
 .btn-outline-success:hover {
   color: #fff;
-  background-color: #28a745;
-  border-color: #28a745;
+  background-color: #bc484e;
+  border-color: #bc484e;
 }
 
 .btn-outline-success:focus, .btn-outline-success.focus {
@@ -3022,7 +3047,7 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-success.disabled, .btn-outline-success:disabled {
-  color: #28a745;
+  color: #bc484e;
   background-color: transparent;
 }
 

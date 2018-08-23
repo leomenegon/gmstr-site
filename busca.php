@@ -15,25 +15,18 @@ while($rowside = mysqli_fetch_assoc($queryside))
 	$i++;
 }
 
-$sqlmain = "SELECT * FROM noticia WHERE tipo = 'main' ORDER BY id DESC LIMIT 1";
-$querymain = mysqli_query($conexao,$sqlmain);
-$rowmain = mysqli_fetch_assoc($querymain);
-
-$sqlfront = "SELECT * FROM noticia WHERE tipo = 'front' ORDER BY id DESC LIMIT 4";
-$queryfront = mysqli_query($conexao,$sqlfront);
-$rowfront = mysqli_fetch_assoc($queryfront);
-
-$datafront = array();
-do
+if($_GET['s']!==null)
 {
-	$datafront[] = $rowfront;
+$like = " noticia.titulo or noticia.subtitulo or noticia.corpo LIKE '%" . $_GET['s'] . "%'  AND";
 }
-while($rowfront = mysqli_fetch_assoc($queryfront));
+else $like = null;
 
-$sqlnormal = "SELECT * FROM noticia ORDER BY id DESC LIMIT 8";
+$_GET['p'] !== null || $_GET['p'] > 0 ? $off = $_GET['p'] * 8 - 8 : $off = 0;
+
+$sqlnormal = "SELECT * FROM noticia WHERE" . $like . " noticia.status = 1 ORDER BY id DESC LIMIT 8 OFFSET $off";
 $querynormal = mysqli_query($conexao,$sqlnormal);
 $rownormal = mysqli_fetch_assoc($querynormal);
-
+$countnormal =ceil(mysqli_num_rows(mysqli_query($conexao,"SELECT id FROM noticia"))/8);
 ?>
 <!doctype html>
 <html>
@@ -72,53 +65,36 @@ $rownormal = mysqli_fetch_assoc($querynormal);
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="index.php">HOME</a>
+      </li>
       <li class="nav-item active">
-        <a class="nav-link" href="#">HOME <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#">NOTÍCIAS<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">NOTÍCIAS</a>
+        <a class="nav-link" href="jogos.php">GAMES</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">GAMES</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">SOBRE</a>
+        <a class="nav-link" href="about.php">SOBRE</a>
       </li>
 	  <li class="nav-item">
         <a class="nav-link" href="contato.php">CONTATO</a>
       </li>
 
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <form class="form-inline my-2 my-lg-0" action="" method="get">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="s" id="s">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
     </form>
   </div>
-						</div>
+</div>
 
 </nav>
-	
-	
-		<div class="container">
-	<!-- Fazer caminho do diretório aqui (notícias>exemplo) -->
-			<a href="noticia.php?noticia=<?php echo $rowmain['id'] ?>"><section class="col-lg-7 float-left mt-3 col-sm-12 p-0">
-				<figure class="img-thumbnail clicavel p-0">
-                    <img src="images/destaque/imgdestaque_<?php echo $rowmain['id'] ?>.jpg" class="img-fluid p-0">
-					<figcaption class="caption pl-2 pr-2" style="font-size: 1.4rem;"><?php echo $rowmain['titulo'] ?></figcaption>
-				</figure>
-				</section></a>
-			<section class="col-lg-5 float-right mt-3 col-sm-12 pr-0 pl-1 d-block" style="overflow: auto; height: 398px">
-				<a href="noticia.php?noticia=<?php echo $datafront['0']['id'] ?>"><figure class="col-md-12 img-thumbnail float-right gapmed p-0 clicavel"> <div class="img-fluid"><img src="images/destaque/imgdestaque_<?php echo $datafront['0']['id'] ?>.jpg" class="img-fluid"> <figcaption><?php echo $datafront['0']['titulo'] ?></figcaption>  </div> </figure></a>
-				<a href="noticia.php?noticia=<?php echo $datafront['1']['id'] ?>"><figure class="col-md-12 img-thumbnail float-right gapmed p-0 clicavel"> <div class="img-fluid"><img src="images/destaque/imgdestaque_<?php echo $datafront['1']['id'] ?>.jpg" class="img-fluid"> <figcaption><?php echo $datafront['1']['titulo'] ?></figcaption>  </div> </figure></a>
-				<a href="noticia.php?noticia=<?php echo $datafront['2']['id'] ?>"><figure class="col-md-12 img-thumbnail float-right m-0 p-0 clicavel"> <div class="img-fluid"><img src="images/destaque/imgdestaque_<?php echo $datafront['2']['id'] ?>.jpg" class="img-fluid"> <figcaption><?php echo $datafront['2']['titulo'] ?></figcaption>  </div> </figure></a>
-				<a href="noticia.php?noticia=<?php echo $datafront['3']['id'] ?>"><figure class="col-md-12 img-thumbnail float-right m-0 p-0 clicavel"> <div class="img-fluid"><img src="images/destaque/imgdestaque_<?php echo $datafront['3']['id'] ?>.jpg" class="img-fluid"> <figcaption><?php echo $datafront['3']['titulo'] ?></figcaption>  </div> </figure></a>
-			</section>
-
-		</div>  
+				
 	<section class="container">
 	
-		<fieldset class="col-xl-7 col-lg-12 float-left mt-3 mb-3 col-sm-12">
-			<legend id="recentes" style="margin-bottom: 0">MAIS RECENTES</legend> <div class="linha"></div>
+		<fieldset class="col-xl-9 col-lg-12 float-left mt-3 mb-3 col-sm-12 ml-0 mr-0 pl-0 pr-4">
+			<legend id="recentes" style="margin-bottom: 0; width: 6.4em">RESULTADOS</legend> <div class="linha"></div>
             
             <?php do{ ?>
             <a href="noticia.php?noticia=<?php echo $rownormal['id'] ?>"><article class="recente float-left clicavel" style="border-top: 0px">
@@ -133,16 +109,23 @@ $rownormal = mysqli_fetch_assoc($querynormal);
                 </div>
             </article></a>
 			<?php } while($rownormal = mysqli_fetch_assoc($querynormal)); ?>
-
-		</fieldset> 
-
-        <div id="page_num"></div>
-		
+			<p class="text-center font-weight-bold">
+				<?php for($z = 1; $z <= $countnormal; $z++){ ?>
+						
+				<a href="busca.php?p=<?php echo $z ?>" class="pagina <?php if($z==$_GET['p']) echo "ativo" ?>">&emsp;<?php echo $z ?>&emsp;</a>
+				
+				<?php } ?>
+			</p>
+		</fieldset> 		
 		<div class="d-none d-xl-block">
-	<aside class="col-4 float-right mt-3 mr-0 ml-0 p-0 text-center">
+			
+			
+			<aside class="container col-3 m-0 p-0 float-right">
+	<aside class=" float-right mt-3 mr-0 ml-0 p-0 text-center">
         <img src="images/placeholder2.png" alt="placeholder" class="media img-fluid m-auto">
         </aside>
-	<aside id="content_pool" class="col-4 float-right mt-3 ml-3 votacao">
+				<div class="clearfix"></div>
+	<aside id="content_pool" class="mt-3 mr-0 ml-0 votacao">
         <h4 class="text-center">Melhor do Mês!</h4>
         <ul style="list-style: none">
             <li><input type="radio" name="voto1">Teste</li>
@@ -152,7 +135,7 @@ $rownormal = mysqli_fetch_assoc($querynormal);
 			<li><input type="submit"></li>
         </ul>
 	</aside>
-	<aside class="col-4 float-right mt-3 ml-3 gameright p-0">
+	<aside class=" float-right mt-3  mr-0 ml-0 gameright p-0">
         <ul  style="list-style: none;padding-left: 0px;">
             <a href="jogo.php?jogo=<?php echo $dataside[0]['id'] ?>"><div class="float-left linha1 clicavel w-100">
 				<li class="text-left">
@@ -179,7 +162,8 @@ $rownormal = mysqli_fetch_assoc($querynormal);
 	</aside>
         </div>
     </section>
-	<footer id="faixa_bottom" class="mt-4">
+		</aside>
+	<footer id="faixa_bottom" class="mt-4  mr-0 ml-0">
 		<div class="container"><div class=""></div>
         <ul class="col-12 navbar ulbt mt-3 p-0 text-center">
             <li><a href="https://facebook.com" target="_blank"><img src="images/face1.png" width="16px" class="float-left media">&nbsp; facebook.com/GameStore</a></li>

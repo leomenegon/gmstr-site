@@ -16,7 +16,7 @@ $row = mysqli_fetch_assoc($query);
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>    
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding: 0px">
 			<div class="container">
 
   <a class="navbar-brand p-0 mb-0 mt-0" href="#"><img src="images/logo.png" alt="logo" height='48px' class="m-0 p-0"></a>
@@ -29,18 +29,17 @@ $row = mysqli_fetch_assoc($query);
       <li class="nav-item">
         <a class="nav-link" href="index.php">HOME</a>
       </li>
-		      <li class="nav-item">
+	  <li class="nav-item">
         <a class="nav-link" href="#">NOTÍCIAS</a>
       </li>
-
       <li class="nav-item">
         <a class="nav-link" href="#">GAMES</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">SOBRE</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">CONTATO</a>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">CONTATO<span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -55,9 +54,9 @@ $row = mysqli_fetch_assoc($query);
 	<section class="container mt-4">
 		
 		<form action="" method="post" class="col-md-8 col-sm-12 p-3 shadow float-left contato">
-			<p>Nome:<br><input type="text" id="nome" placeholder="Insira seu nome." class="w-100 shadow-sm" style="border-radius: 8px; border: 0px;"></p>
-			<p>E-Mail:<br><input type="text" id="email" placeholder="nome@dominio.com" class="w-100 shadow-sm" style="border-radius: 8px; border: 0px;"></p>
-			<p>Mensagem:<br><textarea maxlength="2000" id="msg" placeholder="Limite de 2000 caracteres." class="w-100 mw-100" style="border-radius: 8px"></textarea></p>
+			<p><b>Nome:</b><br><input type="text" id="nome" placeholder="Insira seu nome." class="w-100 shadow-sm" style="border-radius: 8px; border: 0px;"></p>
+			<p><b>E-Mail:</b><br><input type="text" id="email" placeholder="nome@dominio.com" class="w-100 shadow-sm" style="border-radius: 8px; border: 0px;"></p>
+			<p><b>Mensagem:</b><br><textarea maxlength="2000" id="msg" placeholder="Limite de 2000 caracteres." class="w-100 mw-100" style="border-radius: 8px; min-height: 12em;"></textarea></p>
 			<p><input type="submit" id='submit' class="w-100 shadow-sm btctt"></p>
 		</form>
 		<aside class="col-md-3 col-sm-12 p-3 shadow float-right sidectt">
@@ -70,6 +69,7 @@ $row = mysqli_fetch_assoc($query);
 		</aside>
 		
     </section>
+	<div style="position: absolute; bottom: 0; width: 100%">
 	<footer id="faixa_bottom" class="mt-4">
 		<div class="container text-center">
         <ul class="col-12 navbar ulbt mt-3 p-0 text-center" style="list-style: none">
@@ -81,7 +81,10 @@ $row = mysqli_fetch_assoc($query);
 	</footer>
 	<footer class="col-12 float-left text-center copybt">
         &copy; 2018 Leonardo Menegon. Todos os direitos reservados.
-	</footer>
+	</footer></div>
+	<script>
+	
+	</script>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
