@@ -63,8 +63,9 @@ $row = mysqli_fetch_assoc($query);
 			<h4 class="text-center">Contato</h4> <br>
 		<p class="text-justify">
 			<b>Fone:</b> (55)5555-5555<br>
-			<b>Whatsapp:</b> (70)97070-7070 <br>
-			<b>E-Mail:</b> sac@gamestore.com <br>
+			<b>Whatsapp:</b> (70)97070-8080 <br>
+			<b>Whatsapp2:</b> (70)97746-8245 <br>
+			<b>E-Mail:</b> sac@gamestore.com.br <br>
 		</p>
 		</aside>
 		
